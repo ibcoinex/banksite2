@@ -64,11 +64,14 @@ def card_approval(request, card_request_id):
     return render(request, 'bankcard/card_details.html', {'card': card})
 
 
+
+
 def generate_card_number():
     while True:
-        card_number = ''.join(random.choices(string.digits, k=16))
+        card_number = ''.join(str(random.randint(0, 9)) for _ in range(16))
         if not Card.objects.filter(card_number=card_number).exists():
             return card_number
+
 
 
 
