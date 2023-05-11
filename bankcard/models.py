@@ -77,8 +77,8 @@ class CardDetails(models.Model):
 
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    card_type = models.CharField(max_length=50)
-    card_number = models.CharField(max_length=16)
+    card_type = models.CharField(max_length=255, choices=CARD_TYPES)
+    card_number = models.SlugField(max_length=255)
     expiry_date = models.DateTimeField()
     cvv = models.CharField(max_length=3)
     card_owner = models.CharField(max_length=255)
