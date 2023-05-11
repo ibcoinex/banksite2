@@ -75,14 +75,13 @@ class CardDetails(models.Model):
         ('A', 'American Express'),
     ]
 
-
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     card_type = models.CharField(max_length=255, choices=CARD_TYPES)
     card_number = models.SlugField(max_length=255)
-    expiry_date = models.DateTimeField()
+    expiry_date = models.DateField()
     cvv = models.CharField(max_length=3)
-    card_owner = models.CharField(max_length=255)
-
+    card_owner = models.CharField(max_length=255, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.card_type} **** **** **** {self.card_number[-4:]}"
